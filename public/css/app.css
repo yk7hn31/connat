@@ -76,17 +76,17 @@ header > input[type='button'] {
 
 /* Connections */
 
-#side > #channel-list {
+#side > #server-list {
   padding: 10px;
   scrollbar-width: none;
 }
 
-#side > #channel-list::-webkit-scrollbar {
+#side > #server-list::-webkit-scrollbar {
   display: none;
 }
 
-#side > #channel-list > .channel,
-#side > #channel-pref {
+#side > #server-list > .server,
+#side > #server-pref {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -96,7 +96,7 @@ header > input[type='button'] {
   padding: 10px;
 }
 
-#side > #channel-list > .channel {
+#side > #server-list > .server {
   position: relative;
   height: 56px;
   padding: 8px 12px 8px 22px;
@@ -106,13 +106,13 @@ header > input[type='button'] {
   transition: box-shadow 0.15s, background 0.15s;
 }
 
-#side > #channel-list > .channel:hover,
-#side > #channel-list > .channel.active {
+#side > #server-list > .server:hover,
+#side > #server-list > .server.active {
   box-shadow: var(--border-alt);
   background-color: var(--bg-alt2-tr);
 }
 
-#side > #channel-list > .channel::before {
+#side > #server-list > .server::before {
   position: absolute;
   content: '';
   background-color: var(--gry);
@@ -123,29 +123,29 @@ header > input[type='button'] {
   transition: height 0.125s, background-color 0.125s;
 }
 
-#side > #channel-list > .channel:hover::before {
+#side > #server-list > .server:hover::before {
   height: 12px;
 }
 
-#side > #channel-list > .channel.active::before {
+#side > #server-list > .server.active::before {
   height: 17px;
   background-color: #646566;
 }
 
-#side > #channel-list > .channel > .channel-info {
+#side > #server-list > .server > .server-info {
   display: flex;
   flex-direction: column;
   height: 100%;
   justify-content: center;
 }
 
-#side > #channel-list > .channel > .channel-info > .channel-id {
+#side > #server-list > .server > .server-info > .server-id {
   font-weight: 600;
   font-size: 17.2px;
   margin-bottom: 1px;
 }
 
-#side > #channel-list > .channel > .channel-info > .channel-preview {
+#side > #server-list > .server > .server-info > .server-preview {
   color: var(--gry);
   text-overflow: ellipsis;
   white-space: nowrap;
@@ -153,7 +153,7 @@ header > input[type='button'] {
   font-size: 11.5px;
 }
 
-#side > #channel-pref {
+#side > #server-pref {
   height: 50px;
   margin-top: auto;
   justify-self: flex-end;

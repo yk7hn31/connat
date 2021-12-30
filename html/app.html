@@ -14,8 +14,8 @@
     </header>
     <main>
       <div id="side">
-        <ul id="channel-list" class="scrollable"></ul>
-        <div id="channel-pref">
+        <ul id="server-list" class="scrollable"></ul>
+        <div id="server-pref">
           <!-- Later -->
         </div>
       </div>
@@ -38,18 +38,18 @@
           </form>
         </div>
       </div>
-      <div id="chat-ph">Join or create a channel to start chatting!</div>
+      <div id="chat-ph">Join or create a server to start chatting!</div>
     </main>
     <div class="prompt-ex prompt-join">
       <div class="prompt-in">
         <div class="prompt-header">
-          <h2>Enter a CID</h2>
-          <h3>Enter a CID to join a new channel.</h3>
+          <h2>Enter a SID</h2>
+          <h3>Enter a SID to join a new server.</h3>
         </div>
         <div class="prompt-content">
           <form action="#" method="POST">
             <div class="input-block">
-              <label for="cid">CID</label>
+              <label for="cid">SID</label>
               <input type="text" id="cid" name="cid">
             </div>
           </form>
@@ -66,7 +66,7 @@
           <h2>Consider this one more time...</h2>
         </div>
         <div class="prompt-content">
-          Are you sure you want to leave this channel?<br>You <b>won't be able to rejoin</b> unless you have the <b>CID</b>.
+          Are you sure you want to leave this server?<br>You <b>won't be able to rejoin</b> unless you have the <b>SID</b>.
         </div>
         <div class="prompt-control">
           <input type="button" value="Cancel" class="standard">
@@ -78,6 +78,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/_.js"></script>
     <script src="/js/app.js"></script>
   </body>
 </html>

@@ -8,6 +8,7 @@ const session = require('./lib/session');
 const _ = require('./lib/_');
 
 const account = require('./router/account');
+const chat = require('./router/chat');
 
 const app = express();
 const server = http.createServer(app);
@@ -22,6 +23,7 @@ app.use(compression());
 app.use(session());
 app.use(express.static('./public'));
 app.use('/account', account);
+app.use('/chat', chat);
 
 app.get('*', (req, res, next) => {
   req.session.username ? next() : res.redirect('/account/signin');

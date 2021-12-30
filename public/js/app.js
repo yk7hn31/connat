@@ -1,5 +1,9 @@
-fetch('/channel/list', { method: 'POST' }, async (res) => {
-  const channelList = await res.json();
+const serverList = document.getElementById('server-list');
 
-  console.log(channelList);
+fetch('/chat/list', { method: 'POST' }).then(async (res) => {
+  const serverInfoList = await res.json();
+
+  serverInfoList.forEach((info) => {
+    serverList.insertAdjacentHTML('beforeend', _.format.server(info));
+  });
 });

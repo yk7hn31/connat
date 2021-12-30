@@ -1,16 +1,16 @@
 const _ = {
   newCh: (invitee, isDirectMessage) => { // if `isDirectMessage` is false, set `invitee` to null
-    fetch('/channel/create', {
+    fetch('/server/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ invitee, isDirectMessage })
     }).then(async (res) => {
       const result = await res.text();
-      console.log(`A new channel (#${result}) has been successly created.`);
+      console.log(`A new server (#${result}) has been successly created.`);
     });
   },
   manageCh: (cid, option) => (
-    fetch(`/channel/${option}`, {
+    fetch(`/server/${option}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ cid })
@@ -49,11 +49,11 @@ const _ = {
       </div>
       </div>`;
     },
-    channel: ({ cid, userList, isPrivate }) => {
+    server: ({ sid, name, users }) => { // NOTE: Parameter `users` should be parsed
       return `
-      <li id="${cid}" class="channel ${isPrivate}">
-        <div class="channel-info">
-          <div class="channel-id">${isPrivate ? userList[0] : cid}</div>
+      <li id="${sid}" class="server">
+        <div class="server-info">
+          <div class="server-id">${name}</div>
         </div>
       </li>`;
     }

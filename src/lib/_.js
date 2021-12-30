@@ -18,7 +18,7 @@ module.exports = {
       return arr ? this.replace(part, arr) : part;
     }
   },
-  getChannelList: (un, callback) => sql.async.query('select channels from users where username = ? limit 1', [un], callback),
+  getServerList: (un, callback) => sql.async.query('select servers from users where username = ? limit 1', [un], callback),
   getDate: () => moment().format('MMM DD, hh:mm A'),
   send: function (file, option) {
     let base = fs.readFileSync(`./html/${file}.html`, "utf-8");
