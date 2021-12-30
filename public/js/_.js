@@ -1,32 +1,13 @@
 let promptInitialized = false;
 
 const _ = {
-  newCh: (invitee, isDirectMessage) => { // if `isDirectMessage` is false, set `invitee` to null
-    fetch('/server/create', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ invitee, isDirectMessage })
-    }).then(async (res) => {
-      const result = await res.text();
-      console.log(`A new server (#${result}) has been successly created.`);
-    });
-  },
-  manageCh: (sid, option) => (
-    fetch(`/server/${option}`, {
+  manageServer: (sid, option) => (
+    fetch(`/chat/${option}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sid })
     }).then((res) => res.json())
   ),
-  dummy: (un, pw = 'password') => {
-    fetch('/account/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ un, pw })
-    }).then(() => {
-      console.log(`A new dummy account ${un} has been successfully created.`);
-    });
-  },
   alert: (msg, isError = false, delay = 600) => {
     setTimeout(() => {
       const alert = document.querySelector('#alert');
@@ -39,10 +20,10 @@ const _ = {
       setTimeout(() => alert.classList.remove('active'), 2500);
     }, delay);
   },
-  signOut: () => fetch('/account/signout', { method: 'DELETE' }),
   prompt: function (type) {
     const prompt = document.querySelector(`#${type}.prompt-ex`);
     const alert = this.alert;
+    const manageServer = this.manageServer;
 
     function promptInit() {
       document.querySelectorAll('.prompt-ex').forEach((prompt) => {
@@ -65,11 +46,7 @@ const _ = {
           const sid = new FormData(sidForm).get('sid').trim();
 
           if (sid.length === 10) {
-            fetch('/chat/join', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ sid })
-            }).then(async (res) => {
+            manageServer(sid, 'join').then(async (res) => {
               (await res.json()) ? alert('Successfully joined server!') : alert('Error: Check if the SID is valid.', true);
             });
           } else {
