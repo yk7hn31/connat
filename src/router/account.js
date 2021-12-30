@@ -11,13 +11,11 @@ router.get('/signin', (req, res) => {
 });
 
 router.post('/signin', (req, res) => {
-  sql.async.query('select password from users where binary username = ?', [req.body.username], (err, data) => {
+  sql.async.query('select password from users where binary username = ?', [req.body.username], (err, [data]) => {
     if (err) throw err;
 
-    if (!data[0]) {
-      res.send(false);
-    } else {
-      bcrypt.compare(req.body.password, data[0].password, (err, pwIsCorrect) => {
+    if (data) {
+      bcrypt.compare(req.body.password, data.password, (err, pwIsCorrect) => {
         if (pwIsCorrect) {
           req.session.username = req.body.username;
           res.send(true);
@@ -25,6 +23,8 @@ router.post('/signin', (req, res) => {
           res.send(false);
         }
       });
+    } else {
+      res.send(false);
     }
   });
 });
@@ -34,10 +34,10 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/signup', (req, res) => {
-  sql.async.query('select exists(select * from users where username = ? limit 1)', [req.body.username], (err, data) => {
+  sql.async.query('select exists(select * from users where username = ? limit 1)', [req.body.username], (err, [data]) => {
     if (err) throw err;
 
-    if (!Object.values(data[0])[0]) {
+    if (!Object.values(data)[0]) {
       bcrypt.hash(req.body.password, 10, (err, password) => {
         if (err) throw err;
         sql.async.query('insert into users (username, password) values (?, ?)', [req.body.username, password], (err, data) => {
