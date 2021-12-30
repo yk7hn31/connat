@@ -1,5 +1,5 @@
 {
-  "name": "melodie",
+  "name": "connat",
   "version": "1.0.0",
   "description": "Real-time chatting application using socket.io",
   "main": "src/app.js",
