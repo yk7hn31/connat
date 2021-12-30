@@ -40,7 +40,7 @@
       </div>
       <div id="chat-ph">Join or create a server to start chatting!</div>
     </main>
-    <div class="prompt-ex prompt-join">
+    <div id="join-server" class="prompt-ex">
       <div class="prompt-in">
         <div class="prompt-header">
           <h2>Enter a SID</h2>
@@ -50,17 +50,17 @@
           <form action="#" method="POST">
             <div class="input-block">
               <label for="cid">SID</label>
-              <input type="text" id="cid" name="cid">
+              <input type="text" id="cid" name="sid">
             </div>
           </form>
         </div>
         <div class="prompt-control">
           <input type="button" value="Cancel" class="standard">
-          <input type="button" value="Join" class="save" id="join">
+          <input type="button" value="Join" class="save">
         </div>
       </div>
     </div>
-    <div class="prompt-ex prompt-leave">
+    <div id="leave-server" class="prompt-ex">
       <div class="prompt-in">
         <div class="prompt-header">
           <h2>Consider this one more time...</h2>
@@ -70,7 +70,7 @@
         </div>
         <div class="prompt-control">
           <input type="button" value="Cancel" class="standard">
-          <input type="button" value="Leave" class="save red" id="leave">
+          <input type="button" value="Leave" class="save red">
         </div>
       </div>
     </div>

@@ -1,3 +1,5 @@
+let promptInitialized = false;
+
 const _ = {
   newCh: (invitee, isDirectMessage) => { // if `isDirectMessage` is false, set `invitee` to null
     fetch('/server/create', {
@@ -9,11 +11,11 @@ const _ = {
       console.log(`A new server (#${result}) has been successly created.`);
     });
   },
-  manageCh: (cid, option) => (
+  manageCh: (sid, option) => (
     fetch(`/server/${option}`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ cid })
+      body: JSON.stringify({ sid })
     }).then((res) => res.json())
   ),
   dummy: (un, pw = 'password') => {
@@ -25,7 +27,7 @@ const _ = {
       console.log(`A new dummy account ${un} has been successfully created.`);
     });
   },
-  alert: (msg, isError = false, time = 600) => {
+  alert: (msg, isError = false, delay = 600) => {
     setTimeout(() => {
       const alert = document.querySelector('#alert');
 
@@ -35,9 +37,59 @@ const _ = {
   
       alert.classList.add('active');
       setTimeout(() => alert.classList.remove('active'), 2500);
-    }, time);
+    }, delay);
   },
   signOut: () => fetch('/account/signout', { method: 'DELETE' }),
+  prompt: function (type) {
+    const prompt = document.querySelector(`#${type}.prompt-ex`);
+    const alert = this.alert;
+
+    function promptInit() {
+      document.querySelectorAll('.prompt-ex').forEach((prompt) => {
+        prompt.querySelector('.prompt-control > input[type=button].standard').addEventListener('click', (event) => {
+          event.target.parentElement.parentElement.parentElement.classList.remove('active');
+        });
+
+        prompt.addEventListener('click', (event) => {
+          if (event.target.classList.contains('prompt-ex')) prompt.classList.remove('active');
+        });
+      });
+
+      if (type === 'join-server') {
+        const sidForm = prompt.querySelector('.prompt-content > form');
+        const joinButton = prompt.querySelector('.prompt-control > input[type=button].save');
+
+        const handleJoin = (event) => {
+          event.preventDefault();
+
+          const sid = new FormData(sidForm).get('sid').trim();
+
+          if (sid.length === 10) {
+            fetch('/chat/join', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ sid })
+            }).then(async (res) => {
+              (await res.json()) ? alert('Successfully joined server!') : alert('Error: Check if the SID is valid.', true);
+            });
+          } else {
+            alert('Error: Check if the SID is valid.', true);
+          }
+
+          prompt.classList.remove('active');
+          setTimeout(() => sidForm.querySelector('input[type=text]').value = '', 600);
+        }
+
+        sidForm.addEventListener('submit', handleJoin);
+        joinButton.addEventListener('click', handleJoin);
+      }
+
+      promptInitialized = true;
+    }
+
+    if (!promptInitialized) promptInit();
+    prompt.classList.add('active');
+  },
   format: {
     message: ({ isSelf, un, text, time }) => {
       return `
