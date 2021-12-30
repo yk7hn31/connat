@@ -18,7 +18,7 @@ module.exports = () => {
       host: "localhost",
       user: profile.mysql.user,
       password: profile.mysql.password,
-      database: "melodie"
+      database: "connat"
     }),
   });
 };

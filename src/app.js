@@ -1,12 +1,13 @@
 const http = require('http');
 const express = require('express');
-const path = require('path');
 const compression = require('compression');
 const helmet = require('helmet');
 const { Server } = require('socket.io');
 
 const session = require('./lib/session');
 const _ = require('./lib/_');
+
+const account = require('./router/account');
 
 const app = express();
 const server = http.createServer(app);
@@ -20,9 +21,17 @@ app.use(express.json());
 app.use(compression());
 app.use(session());
 app.use(express.static('./public'));
+app.use('/account', account);
+
+app.get('*', (req, res, next) => {
+  req.session.username ? next() : res.redirect('/account/signin');
+});
 
 app.get('/', (req, res) => {
   _.send('app', { res });
 });
 
-server.listen(PORT, () => console.log('Server running on port 80'));
+io.on('connection', socket => {
+});
+
+server.listen(PORT, () => console.log(`Server running on port ${PORT}`));

@@ -108,7 +108,7 @@ li {
   width: 100%;
   font-size: 17px;
   font-weight: 500;
-  padding: 0 2px 3px 2px;
+  padding: 0 2px 5px 2px;
   box-shadow: var(--border-inp);
 }
 
@@ -194,7 +194,7 @@ input[type='button'].standard:hover {
 
 div.msg {
   font-size: 14px;
-  transition: filter 0.2s;
+  transition: filter 0.15s;
 }
 
 div.msg.fail {

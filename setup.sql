@@ -1,6 +1,6 @@
-create database melodie;
+create database connat;
 
-use melodie;
+use connat;
 
 create table users (
   id int not null auto_increment,
@@ -10,11 +10,25 @@ create table users (
   primary key (id)
 );
 
+create table dm (
+  id int not null auto_increment,
+  part1 varchar(40) not null,
+  part2 varchar(40) not null,
+  primary key (id)
+);
+
+create table servers (
+  id int not null auto_increment,
+  sid varchar(10) not null unique,
+  name varchar(50) not null,
+  users varchar(820) not null default '',
+  primary key (id)
+);
+
 create table channels (
   id int not null auto_increment,
-  cid varchar(10) not null unique,
-  users tinytext not null,
-  private boolean not null,
+  server varchar(10) not null,
+  name varchar(50) not null,
   primary key (id)
 );
 

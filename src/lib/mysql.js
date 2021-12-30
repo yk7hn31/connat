@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
   host: "localhost",
   user: profile.mysql.user,
   password: profile.mysql.password,
-  database: "melodie",
+  database: "connat",
 });
 
 async function asyncConnect() {
@@ -18,7 +18,7 @@ async function asyncConnect() {
       host: "localhost",
       user: profile.mysql.user,
       password: profile.mysql.password,
-      database: "melodie",
+      database: "connat",
     });
 
     await asyncConnection.connect();

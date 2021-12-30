@@ -1,14 +1,14 @@
-# Melodie
+# Connat
 
 ### Acknowledgement
 
-This project was originally hosted by [captain0potlid](https://github.com/captain0potlid) in the name of [Artrium Code](https://github.com/captain0potlid/Artrium-Chat). However, this app is now being hosted by me, with its name temporarily changed to **Melodie**.
+This project was originally hosted by [captain0potlid](https://github.com/captain0potlid) in the name of [Artrium Code](https://github.com/captain0potlid/Artrium-Chat). However, this app is now being hosted by me, with its name temporarily changed to **Connat**.
 
 > The name of this project can be changed anytime.
 
 ## About
 
-Melodie is an application that has modern and simple design while being feature-rich at the same time.
+Connat is an application that has modern and simple design while being feature-rich at the same time.
 
 This application will have features below:
 
