@@ -19,7 +19,7 @@ router.post('/list', (req, res) => {
         response.push({
           sid: sid,
           name: server.name,
-          users: JSON.stringify(server.users)
+          users: JSON.parse(server.users)
         });
       }
     }

@@ -78,11 +78,13 @@ const _ = {
       </div>
       </div>`;
     },
-    server: ({ sid, name, users }) => { // NOTE: Parameter `users` should be parsed
+    server: ({ sid, name, users }) => {
+      const userLength = users.length;
       return `
       <li id="${sid}" class="server">
         <div class="server-info">
           <div class="server-id">${name}</div>
+          <div class="server-preview">${userLength} ${userLength > 1 ? 'users' : 'user'}</div>
         </div>
       </li>`;
     }
