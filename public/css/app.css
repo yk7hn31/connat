@@ -16,7 +16,7 @@ body {
   align-items: center;
   justify-content: center;
   width: 6%;
-  border-right: 1px solid var(--gry-temp);
+  border-right: var(--border);
   padding: 20px;
 }
 
@@ -24,7 +24,7 @@ body {
   width: 94%;
 }
 
-/* side */
+/* Side (Server List) */
 
 #side > li.server {
   display: flex;
@@ -55,9 +55,9 @@ body {
 #side > li.server:first-of-type::before {
   position: absolute;
   content: '';
-  background-color: var(--gry-temp);
   width: 50px;
-  height: 1px;
+  height: 0;
+  border-bottom: var(--border);
   transform: translateY(40px);
 }
 
@@ -66,14 +66,14 @@ body {
 }
 
 #side > li.server:hover, #side > li.server.active {
-  background-color: rgb(0, 0, 0, 0.05);
+  background-color: #0000000d;
 }
 
 #side > li.server.active > ion-icon {
   color: var(--accent);
 }
 
-/* content */
+/* Content - Header */
 
 #content > header, main {
   display: flex;
@@ -84,12 +84,12 @@ body {
 #content > header {
   padding: 30px;
   height: 10%;
-  border-bottom: 1px solid var(--gry-temp);
+  border-bottom: var(--border);
 }
 
 #content > header > ion-icon {
   margin-right: 15px;
-  color: #9fabb9;
+  color: var(--accent);
 }
 
 #content > header > h1 {
@@ -108,6 +108,8 @@ body {
   justify-self: flex-end;
 }
 
+/* Content - Main (Channel List & Chat) */
+
 #content > main {
   width: 100%;
   height: 90%;
@@ -120,11 +122,11 @@ main > #channel, main > #chat-ph {
 }
 
 main > #channel {
-  width: 30%;
-  border-right: 1px solid var(--gry-temp);
+  width: 25%;
+  border-right: var(--border);
 }
 
-main #channel > div {
+main > #channel > * {
   padding: 25px;
 }
 
@@ -132,6 +134,7 @@ main > #channel > #channel-header {
   display: flex;
   flex-direction: row;
   font-size: 18px;
+  padding-bottom: 0;
 }
 
 main > #channel > #channel-header > button {
@@ -143,8 +146,53 @@ main > #channel > #channel-header > button::after {
   transform: translateY(40px);
 }
 
+main > #channel > #channel-list > .channel {
+  position: relative;
+  height: 70px;
+  padding: 15px;
+  margin-bottom: 5px;
+  border-radius: 10px;
+  overflow: visible;
+  cursor: pointer;
+  transition: background-color .15s;
+}
+
+main > #channel > #channel-list > .channel.active,
+main > #channel > #channel-list > .channel:hover {
+  background-color: #00000008;
+}
+
+/* main > #channel > #channel-list > .channel.unread::before {
+  position: absolute;
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+  background-color: var(--red);
+  top: 25px;
+  left: -5px;
+} */
+
+main > #channel > #channel-list > .channel > .name {
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 5px;
+}
+
+main > #channel > #channel-list > .channel > .preview {
+  display: flex;
+  color: var(--gry);
+  font-size: 13px;
+}
+
+main > #channel > #channel-list > .channel > .preview > span {
+  color: inherit;
+  font-size: inherit;
+  margin-left: auto;
+}
+
 main > #chat-ph {
-  width: 70%;
+  width: 75%;
   background-color: var(--bg-alt);
   align-items: center;
   justify-content: center;

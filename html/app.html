@@ -26,15 +26,30 @@
         <input type="button" value="Sign Out" class="save red">
       </header>
       <main>
-        <ul id="channel" class="scrollable">
+        <div id="channel">
           <div id="channel-header">
             <b>Chats</b>
             <button class="preview">
               <ion-icon name="add-outline"></ion-icon>
             </button>
           </div>
-          <div id="channel-list"></div>
-        </ul>
+          <ul id="channel-list" class="scrollable">
+            <li class="channel">
+              <div class="name">evannilaz</div>
+              <div class="preview">
+                You: Welcome to Connat!
+                <span>3h</span>
+              </div>
+            </li>
+            <li class="channel active">
+              <div class="name">captain0potlid</div>
+              <div class="preview">
+                captain0potlid: Good afternoon, pal
+                <span>1m</span>
+              </div>
+            </li>
+          </ul>
+        </div>
         <div id="chat-ph">Join or create a server to start chatting!</div>
       </main>
     </div>

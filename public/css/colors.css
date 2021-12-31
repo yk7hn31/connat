@@ -18,7 +18,7 @@
   --blk: #000000;
   --pnk-ll: #e4007d;
 
-  --gry-temp: #0000001a;
+  --border: 1px solid #0000001a;
 
   --accent: var(--blu); /* Accent color */
 
@@ -36,7 +36,6 @@
   --text: var(--blk);
   --text-alt: #2e3338;
   
-  --border: inset #00000026 0 0 0 1px; /* Default border style */
   --border-alt: inset #eff3f4 0 0 0 1px; /* Alternative border style */
   
   --border-inp: #00000026 0 1px;
