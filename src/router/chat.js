@@ -14,12 +14,12 @@ router.post('/list', (req, res) => {
 
     if (serverList.length > 0) {
       for (let sid of serverList) {
-        const server = ((await (await sql.promise).execute('select name, users from servers where sid = ? limit 1', [sid]))[0])[0];
+        const server = ((await (await sql.promise).execute('select name, icon from servers where sid = ? limit 1', [sid]))[0])[0];
   
         response.push({
           sid: sid,
           name: server.name,
-          users: JSON.parse(server.users)
+          users: server.users
         });
       }
     }

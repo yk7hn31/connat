@@ -16,7 +16,8 @@ body {
   align-items: center;
   justify-content: center;
   width: 6%;
-  border-right: var(--border);
+  min-width: 80px;
+  border-right: var(--border-layout);
   padding: 20px;
 }
 
@@ -44,7 +45,7 @@ body {
 }
 
 #side > li.server::after {
-  content: 'Server Name';
+  content: attr(name);
   left: calc(6% - 10px);
 }
 
@@ -57,7 +58,7 @@ body {
   content: '';
   width: 50px;
   height: 0;
-  border-bottom: var(--border);
+  border-bottom: var(--border-layout);
   transform: translateY(40px);
 }
 
@@ -66,7 +67,7 @@ body {
 }
 
 #side > li.server:hover {
-  background-color: #00000008;
+  background-color: var(--gry-tnp);
 }
 
 #side > li.server.active {
@@ -89,7 +90,7 @@ body {
 #content > header {
   padding: 30px;
   height: 10%;
-  border-bottom: var(--border);
+  border-bottom: var(--border-layout);
 }
 
 #content > header > ion-icon {
@@ -127,7 +128,7 @@ main > #channel, main > #chat-ph, main > #chat, main > #participant-list {
 }
 
 main > #channel, main > #chat {
-  border-right: var(--border);
+  border-right: var(--border-layout);
 }
 
 main > #channel {
@@ -167,7 +168,7 @@ main > #channel > #channel-list > .channel {
 
 main > #channel > #channel-list > .channel.active,
 main > #channel > #channel-list > .channel:hover {
-  background-color: #00000008;
+  background-color: var(--gry-tnp);
 }
 
 /* main > #channel > #channel-list > .channel.unread::before {
@@ -191,7 +192,8 @@ main > #channel > #channel-list > .channel > .preview {
   display: flex;
   color: var(--gry);
   font-size: 13px;
-  text-overflow: ellipsis;
+  width: 90%;
+  white-space: nowrap;
 }
 
 main > #channel > #channel-list > .channel > .preview > span {
@@ -231,33 +233,30 @@ main > #chat > #message-list > .message {
 }
 
 main > #chat > #message-list > .message:hover {
-  background-color: #00000008;
+  background-color: var(--gry-tnp);
 }
 
 main > #chat > #message-list > .message > .info {
   display: flex;
   flex-direction: row;
-  font-size: 15px;
   margin-bottom: 10px;
 }
 
-main > #chat > #message-list > .message > .info > * {
-  font-size: inherit;
-}
-
 main > #chat > #message-list > .message > .info > .username {
+  font-size: 15px;
   font-weight: 600;
   margin-right: 7.5px;
 }
 
 main > #chat > #message-list > .message > .info > .time {
+  font-size: 14px;
   color: var(--gry);
 }
 
 main > #chat > #message-list > .message > .content {
   padding-left: 7.5px;
   font-size: 15.75px;
-  font-weight: 300;
+  user-select: text;
   color: var(--text-alt);
 }
 
@@ -288,7 +287,7 @@ main > #chat > #chat-input > input[type='text'] {
   padding: 12px 15px;
   font-size: 15px;
   background-color: var(--bg-alt);
-  border: 1.8px solid rgba(0, 0, 0, 0.08);
+  border: 1.8px solid var(--gry-tnp-alt);
   border-radius: 10px;
   margin: 0 15px 0 20px;
 }
@@ -328,7 +327,7 @@ main > #participant-list > li.participant {
 }
 
 main > #participant-list > li.participant:hover {
-  background-color: #00000008;
+  background-color: var(--gry-tnp);
 }
 
 main > #participant-list > li.participant > .username {

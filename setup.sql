@@ -22,6 +22,7 @@ create table servers (
   sid varchar(10) not null unique,
   name varchar(50) not null,
   users varchar(1000) not null default '[]',
+  icon varchar(30) not null,
   primary key (id)
 );
 

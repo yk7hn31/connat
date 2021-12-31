@@ -73,24 +73,20 @@ const _ = {
     prompt.classList.add('active');
   },
   format: {
-    message: ({ isSelf, un, text, time }) => {
+    message: ({ username, content, time }) => {
       return `
-      <div class="bubble-ex ${isSelf ? 'self' : 'server'}">
-      <div class="user">${un}</div>
-      <div class="bubble-in">
-        <div class="msg">${text}</div>
-        <div class="time">${time}</div>
-      </div>
-      </div>`;
-    },
-    server: ({ sid, name, users }) => {
-      const userLength = users.length;
-      return `
-      <li id="${sid}" class="channel">
-        <div class="channel-info">
-          <div class="channel-name">${name}</div>
-          <div class="channel-preview">${userLength} ${userLength > 1 ? 'users' : 'user'}</div>
+      <li class="message">
+        <div class="info">
+          <div class="username">${username}</div>
+          <span class="time">${time}</span>
         </div>
+        <div class="content">${content}</div>
+      </li>`;
+    },
+    server: ({ sid, name }) => {
+      return `
+      <li id="${sid} class="server preview" name="${name}">
+        <ion-icon name="earth"></ion-icon>
       </li>`;
     }
   }

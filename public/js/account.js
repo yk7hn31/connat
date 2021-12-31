@@ -4,30 +4,15 @@ const msg = document.querySelector('.msg');
 const isSignIn = location.href.includes('signin');
 const unRegex = /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){4,18}[a-zA-Z0-9]$/;
 const pwRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-const msgList = {
-  empty: ' Please fill out all of the input boxes.',
-  incorrect: ' Incorrect username or password.',
-  duplicate: ' Account with this username already exists.',
-  success: ' You are now one of us.',
-  retype: ' The retyped password has a typo.',
-  un: ' Please follow the username <u onclick="alert(\'A username must be 6-20 in length and can include the dot, underscore and hyphen, and they must not be consecutive.\')">format</u>.',
-  pw: ' Please follow the password <u onclick="alert(\'A password must be 8+ in length and include at least one upper/lowercase, one number and one special character.\')">format</u>.',
+const messages = {
+  empty: 'Please fill out all of the input boxes.',
+  incorrect: 'Incorrect username or password.',
+  duplicate: 'Account with this username already exists.',
+  success: 'You are now one of us.',
+  retype: 'The retyped password has a typo.',
+  username: 'Please follow the username <u onclick="alert(\'A username must be 6-20 in length and can include the dot, underscore and hyphen, and they must not be consecutive.\')">format</u>.',
+  password: 'Please follow the password <u onclick="alert(\'A password must be 8+ in length and include at least one upper/lowercase, one number and one special character.\')">format</u>.',
 };
-
-async function showMsg(msgContent) {
-  if (msgContent === 'success') {
-    msg.classList.remove('fail');
-    msg.classList.add('success');
-  } else {
-    msg.classList.remove('success');
-    msg.classList.add('fail');
-  }
-
-  msg.innerHTML = msgList[msgContent];
-
-  msg.classList.remove('hidden');
-  setTimeout(() => msg.classList.add('hidden'), 5000);
-}
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -39,10 +24,10 @@ form.addEventListener('submit', (e) => {
 
   if (username && password) {
     if (!isSignIn && (!passwordConfirm || !unRegex.test(username) || !password === passwordConfirm || !pwRegex.test(password))) {
-      if (!passwordConfirm) showMsg('empty');
-      else if (!unRegex.test(username)) showMsg('un');
-      else if (password !== passwordConfirm) showMsg('retype');
-      else if (!pwRegex.test(password)) showMsg('pw');
+      if (!passwordConfirm) _.alert(messages.empty, true, 0);
+      else if (!unRegex.test(username)) _.alert(messages.username, true, 0);
+      else if (password !== passwordConfirm) _.alert(messages.retype, true, 0);
+      else if (!pwRegex.test(password)) _.alert(messages.password, true, 0);
       return;
     }
 
@@ -54,16 +39,16 @@ form.addEventListener('submit', (e) => {
       const valid = await res.json();
 
       if (isSignIn) {
-        valid ? location.href = '/' : showMsg('incorrect');
+        valid ? location.href = '/' : _.alert(messages.incorrect, true, 0);
       } else {
-        if (!valid) showMsg('duplicate');
+        if (!valid) _.alert(messages.duplicate, true, 0);
         else {
-          showMsg('success');
+          _.alert(messages.success, false, 0);
           setTimeout(() => (location.href = '/account/signin'), 2000);
         }
       }
     });
   } else {
-    showMsg('empty');
+    _.alert(messages.empty, true, 0);
   }
 });

@@ -105,27 +105,19 @@ li {
 
 .input-line > input[type='text'],
 .input-line > input[type='password'],
-.input-line > input[type='email'],
-.input-block > input[type='text'],
-.input-block > input[type='password'],
-.input-block > input[type='email'] {
-  transition: box-shadow 0.2s;
-}
-
-.input-line > input[type='text'],
-.input-line > input[type='password'],
 .input-line > input[type='email'] {
   width: 100%;
   font-size: 17px;
   font-weight: 500;
-  padding: 0 2px 5px 2px;
-  box-shadow: var(--border-inp);
+  padding: 0 2px 3px 2px;
+  border-bottom: 1.5px solid var(--gry-tnp-alt);
+  transition: border-color .15s;
 }
 
 .input-line > input[type='text']:focus,
 .input-line > input[type='password']:focus,
 .input-line > input[type='email']:focus {
-  box-shadow: var(--border-inp-f);
+  border-color: var(--gry);
 }
 
 .input-block > input[type='text'],
@@ -136,7 +128,7 @@ li {
   padding: 10px 12px;
   border-radius: 5px;
   background-color: var(--bg-alt);
-  border: 1.5px solid rgb(0, 0, 0, 0.1);
+  border: 1.5px solid var(--gry-tnp-alt);
 }
 
 b {
@@ -155,11 +147,10 @@ input[type='button'].save,
 input[type='submit'].standard,
 input[type='button'].standard {
   padding: 10px 15px;
-  height: 35px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: 500;
-  transition: background 0.2s;
+  transition: filter .2s;
 }
 
 a.button.save,
@@ -167,7 +158,6 @@ input[type='submit'].save,
 input[type='button'].save {
   color: var(--wht);
   box-shadow: var(--bx-shadow-acc);
-  background: var(--bg-lyr);
   background-color: var(--accent);
 }
 
@@ -181,10 +171,10 @@ input[type='button'].save.red {
 a.button.standard,
 input[type='submit'].standard,
 input[type='button'].standard {
+  padding: 8px 12px;
   color: var(--gry);
-  box-shadow: var(--border);
-  background: var(--bg-lyr-wht);
-  background-color: var(--bg-std-btn);
+  border: 1.5px solid var(--gry-tnp-alt);
+  background-color: var(--wht);
 }
 
 a.button.save:hover,
@@ -193,7 +183,7 @@ input[type='submit'].save:hover,
 input[type='button'].save:hover,
 input[type='submit'].standard:hover,
 input[type='button'].standard:hover {
-  background-position: bottom;
+  filter: brightness(.95);
 }
 
 .preview::after {
@@ -201,7 +191,7 @@ input[type='button'].standard:hover {
   padding: 12px;
   font-weight: 500;
   border-radius: 5px;
-  background-color: var(--bg);
+  background-color: var(--wht);
   box-shadow: 0 20px 50px rgb(0, 0, 0, .25);
   filter: opacity(0);
   z-index: -5;
@@ -212,19 +202,6 @@ input[type='button'].standard:hover {
   filter: opacity(1);
   z-index: 5;
   transition: filter .12s .15s, z-index 0s 0s;
-}
-
-div.msg {
-  font-size: 14px;
-  transition: filter 0.15s;
-}
-
-div.msg.fail {
-  color: var(--red);
-}
-
-div.msg.success {
-  color: var(--grn);
 }
 
 .prompt-ex {
@@ -332,9 +309,3 @@ div.msg.success {
 #alert.active {
   top: 20px;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  .prompt-ex > .prompt-in {
-    background-color: var(--bg-alt);
-  }
-} */

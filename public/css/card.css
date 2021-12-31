@@ -15,7 +15,7 @@ main {
   align-items: center;
   background-color: var(--bg);
   width: 400px;
-  box-shadow: var(--border);
+  border: 1.8px solid var(--gry-tnp-alt);
   padding: 20px;
   border-radius: 10px;
 }
@@ -62,18 +62,6 @@ body > input[type='button'].standard {
   margin-top: 20px;
 }
 
-main > form > div.msg {
-  margin-top: -20px;
-  font-size: 14px;
-  overflow: visible;
-}
-
-main > form > div.msg > u {
-  color: inherit;
-  cursor: pointer;
-  font-weight: 500;
-}
-
 main > div:last-of-type {
   margin-top: auto;
   margin-left: auto;
@@ -81,13 +69,3 @@ main > div:last-of-type {
   justify-self: flex-end;
   font-size: 15px;
 }
-
-/* @media (prefers-color-scheme: dark) {
-  body {
-    background-color: #0f0f11;
-  }
-
-  main {
-    background-color: #161618;
-  }
-} */
