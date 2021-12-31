@@ -38,7 +38,7 @@ body {
 }
 
 #side > li.server > ion-icon {
-  color: #9fabb9;
+  color: var(--gry);
   font-size: 24px;
   transition: color .1s !important;
 }
@@ -218,11 +218,47 @@ main > #chat-ph:hover {
 
 main > #chat {
   width: 62.5%;
-  padding-bottom: 20px;
+  padding: 10px 0 20px 0;
 }
 
-main > #chat > #bubble-list {
+main > #chat > #message-list {
   height: calc(100% - 60px);
+}
+
+main > #chat > #message-list > .message {
+  padding: 10px 20px;
+  transition: background-color .15s;
+}
+
+main > #chat > #message-list > .message:hover {
+  background-color: #00000008;
+}
+
+main > #chat > #message-list > .message > .info {
+  display: flex;
+  flex-direction: row;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+main > #chat > #message-list > .message > .info > * {
+  font-size: inherit;
+}
+
+main > #chat > #message-list > .message > .info > .username {
+  font-weight: 600;
+  margin-right: 7.5px;
+}
+
+main > #chat > #message-list > .message > .info > .time {
+  color: var(--gry);
+}
+
+main > #chat > #message-list > .message > .content {
+  padding-left: 7.5px;
+  font-size: 15.75px;
+  font-weight: 300;
+  color: var(--text-alt);
 }
 
 main > #chat > #chat-input {
@@ -235,7 +271,7 @@ main > #chat > #chat-input {
 }
 
 main > #chat > #chat-input > button > ion-icon {
-  color: #9fabb9;
+  color: var(--gry);
   transition: color .15s;
 }
 
@@ -312,7 +348,7 @@ main > #participant-list > li.participant > button:hover {
 }
 
 main > #participant-list > li.participant > button > ion-icon {
-  color: #9fabb9;
+  color: var(--gry);
 }
 
 main > #participant-list > li.participant > button:hover > ion-icon {
