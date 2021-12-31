@@ -5,7 +5,7 @@ const _ = require('../lib/_');
 
 const router = express.Router();
 
-router.post('/list', (req, res) => {
+router.post('/server/list', (req, res) => {
   _.getServerList(req.session.username, async (err, [data]) => {
     if (err) throw err;
 
@@ -17,9 +17,32 @@ router.post('/list', (req, res) => {
         const server = ((await (await sql.promise).execute('select name, icon from servers where sid = ? limit 1', [sid]))[0])[0];
   
         response.push({
-          sid: sid,
+          sid,
           name: server.name,
-          users: server.users
+          icon: server.icon
+        });
+      }
+    }
+
+    res.send(response);
+  });
+});
+
+router.post('/dm/list', (req, res) => {
+  _.getDMList(req.session.username, async (err, [data]) => {
+    if (err) throw err;
+
+    const dmList = JSON.parse(data.dm);
+    let response = [];
+
+    if (dmList.length > 0) {
+      for (let id of dmList) {
+        const dm = ((await (await sql.promise).execute('select users from dm where id = ? limit 1', [id]))[0])[0];
+        const userList = JSON.parse(dm.users);
+        userList.splice(userList.indexOf(req.session.username), 1);
+
+        response.push({
+          id, username: userList.toString()
         });
       }
     }

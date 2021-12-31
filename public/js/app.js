@@ -1,7 +1,7 @@
-const chatPh = document.getElementById('chat-ph');
-const serverList = document.getElementById('server-list');
+const serverList = document.getElementById('side');
+const channelList = document.getElementById('channel-list');
 
-fetch('/chat/list', { method: 'POST' }).then(async (res) => {
+fetch('/chat/server/list', { method: 'POST' }).then(async (res) => {
   const serverInfoList = await res.json();
 
   serverInfoList.forEach((info) => {
@@ -9,6 +9,14 @@ fetch('/chat/list', { method: 'POST' }).then(async (res) => {
   });
 });
 
-chatPh.addEventListener('click', (event) => {
-  _.prompt('join-server');
+fetch('/chat/dm/list', { method: 'POST' }).then(async (res) => {
+  const dmInfoList = await res.json();
+
+  dmInfoList.forEach((info) => {
+    channelList.insertAdjacentHTML('beforeend', _.format.channel(info));
+  });
 });
+
+// chatPh.addEventListener('click', (event) => {
+//   _.prompt('join-server');
+// });

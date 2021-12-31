@@ -9,14 +9,8 @@
   </head>
   <body>
     <ul id="side">
-      <li class="server preview active">
+      <li id="direct-message" class="server preview active" name="Direct Messages">
         <ion-icon name="chatbubble"></ion-icon>
-      </li>
-      <li class="server preview" name="Example Server">
-        <ion-icon name="grid"></ion-icon>
-      </li>
-      <li class="server preview" name="Connat Dev">
-        <ion-icon name="earth"></ion-icon>
       </li>
     </ul>
     <div id="content">
@@ -34,22 +28,7 @@
               <ion-icon name="add-outline"></ion-icon>
             </button>
           </div>
-          <ul id="channel-list" class="scrollable">
-            <li class="channel">
-              <div class="name">evannilaz</div>
-              <div class="preview">
-                You: Welcome to Connat!
-                <span>3h</span>
-              </div>
-            </li>
-            <li class="channel active">
-              <div class="name">captain0potlid</div>
-              <div class="preview">
-                captain0potlid: Good afternoon, pal.
-                <span>1m</span>
-              </div>
-            </li>
-          </ul>
+          <ul id="channel-list" class="scrollable"></ul>
         </div>
         <div id="chat">
           <ul id="message-list">
@@ -107,7 +86,6 @@
             </button>
           </li>
         </ul>
-        <!-- <div id="chat-ph">Join or create a server to start chatting!</div> -->
       </main>
     </div>
     <div id="join-server" class="prompt-ex">
@@ -149,6 +127,6 @@
     <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/_.js"></script>
-    <!-- <script src="/js/app.js"></script> -->
+    <script src="/js/app.js"></script>
   </body>
 </html>

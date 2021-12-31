@@ -7,13 +7,13 @@ create table users (
   username varchar(40) not null unique,
   password varchar(72) not null,
   servers varchar(1000) not null default '[]',
+  dm varchar(800) not null default '[]',
   primary key (id)
 );
 
 create table dm (
   id int not null auto_increment,
-  part1 varchar(40) not null,
-  part2 varchar(40) not null,
+  users varchar(100) not null default '[]',
   primary key (id)
 );
 
@@ -33,9 +33,18 @@ create table channels (
   primary key (id)
 );
 
-create table history (
+create table ch_history (
   id int not null auto_increment,
-  cid varchar(10) not null,
+  sid varchar(10) not null,
+  username varchar(40) not null,
+  message text not null,
+  time timestamp not null default current_timestamp,
+  primary key (id)
+);
+
+create table dm_history (
+  id int not null auto_increment,
+  dm int not null,
   username varchar(40) not null,
   message text not null,
   time timestamp not null default current_timestamp,

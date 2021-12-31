@@ -33,4 +33,4 @@ app.get('/', (req, res) => {
   _.send('app', { res });
 });
 
-server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}!`));
+server.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));

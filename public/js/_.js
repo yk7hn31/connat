@@ -83,10 +83,20 @@ const _ = {
         <div class="content">${content}</div>
       </li>`;
     },
-    server: ({ sid, name }) => {
+    server: ({ sid, name, icon }) => {
       return `
-      <li id="${sid} class="server preview" name="${name}">
-        <ion-icon name="earth"></ion-icon>
+      <li id="${sid}" class="server preview" name="${name}">
+        <ion-icon name="${icon}"></ion-icon>
+      </li>`;
+    },
+    channel: ({ id, username }) => {
+      return `
+      <li id="${id}" class="channel">
+        <div class="name">${username}</div>
+        <div class="preview">
+          You: Welcome to Connat!
+          <span>3h</span>
+        </div>
       </li>`;
     }
   }

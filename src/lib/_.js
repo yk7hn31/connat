@@ -19,6 +19,7 @@ module.exports = {
     }
   },
   getServerList: (un, callback) => sql.async.query('select servers from users where username = ? limit 1', [un], callback),
+  getDMList: (un, callback) => sql.async.query('select dm from users where username = ? limit 1', [un], callback),
   getDate: () => moment().format('MMM DD, hh:mm A'),
   send: function (file, option) {
     let base = fs.readFileSync(`./html/${file}.html`, "utf-8");

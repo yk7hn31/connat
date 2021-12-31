@@ -15,14 +15,13 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 6%;
-  min-width: 80px;
+  min-width: 95px;
   border-right: var(--border-layout);
   padding: 20px;
 }
 
 #content {
-  width: 94%;
+  flex-grow: 100;
 }
 
 /* Side (Server List) */
@@ -45,21 +44,19 @@ body {
 }
 
 #side > li.server::after {
+  justify-self: flex-start;
   content: attr(name);
-  left: calc(6% - 10px);
+  left: 0;
+  transform: translateX(90px);
 }
 
-#side > li.server:first-of-type::after {
-  content: 'Direct Messages';
-}
-
-#side > li.server:first-of-type::before {
+#side > li.server:nth-of-type(2)::before {
   position: absolute;
   content: '';
   width: 50px;
   height: 0;
   border-bottom: var(--border-layout);
-  transform: translateY(40px);
+  transform: translateY(-40px);
 }
 
 #side > li.server:not(:last-of-type) {
@@ -150,6 +147,10 @@ main > #channel > #channel-header > button {
   margin-left: auto;
 }
 
+main > #channel > #channel-header > button > ion-icon {
+  color: var(--gry);
+}
+
 main > #channel > #channel-header > button::after {
   content: 'Create DM';
   transform: translateY(40px);
@@ -192,7 +193,6 @@ main > #channel > #channel-list > .channel > .preview {
   display: flex;
   color: var(--gry);
   font-size: 13px;
-  width: 90%;
   white-space: nowrap;
 }
 
