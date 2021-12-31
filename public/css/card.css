@@ -82,7 +82,7 @@ main > div:last-of-type {
   font-size: 15px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   body {
     background-color: #0f0f11;
   }
@@ -90,4 +90,4 @@ main > div:last-of-type {
   main {
     background-color: #161618;
   }
-}
+} */

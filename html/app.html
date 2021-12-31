@@ -7,39 +7,37 @@
     <link rel="stylesheet" href="/css/app.css">
   </head>
   <body>
-    <header>
-      <h1>Connat</h1>
-      <span>DVr-1.0</span>
-      <input type="button" value="Sign Out" class="save red">
-    </header>
-    <main>
-      <div id="side">
-        <ul id="server-list" class="scrollable"></ul>
-        <div id="server-pref">
-          <!-- Later -->
-        </div>
-      </div>
-      <div id="chat" class="hidden-hard">
-        <div id="chat-header">
-          <ion-icon name="person"></ion-icon>
-          <ion-icon name="people"></ion-icon>
-          <div id="chat-header-info"></div>
-          <button class="icon">
-            <ion-icon name="exit"></ion-icon>
-          </button>
-        </div>
-        <div id="bubble-list" class="scrollable"></div>
-        <div id="chat-input-ex">
-          <form id="chat-input-in">
-            <button class="icon">
-              <ion-icon name="add"></ion-icon>
+    <ul id="side">
+      <li class="server preview active">
+        <ion-icon name="chatbubble"></ion-icon>
+      </li>
+      <li class="server preview">
+        <ion-icon name="grid"></ion-icon>
+      </li>
+      <li class="server preview">
+        <ion-icon name="earth"></ion-icon>
+      </li>
+    </ul>
+    <div id="content">
+      <header>
+        <ion-icon name="chatbubble"></ion-icon>
+        <h1>Direct Messages</h1>
+        <span></span>
+        <input type="button" value="Sign Out" class="save red">
+      </header>
+      <main>
+        <ul id="channel" class="scrollable">
+          <div id="channel-header">
+            <b>Chats</b>
+            <button class="preview">
+              <ion-icon name="add-outline"></ion-icon>
             </button>
-            <input type="text" placeholder="Send a message...">
-          </form>
-        </div>
-      </div>
-      <div id="chat-ph">Join or create a server to start chatting!</div>
-    </main>
+          </div>
+          <div id="channel-list"></div>
+        </ul>
+        <div id="chat-ph">Join or create a server to start chatting!</div>
+      </main>
+    </div>
     <div id="join-server" class="prompt-ex">
       <div class="prompt-in">
         <div class="prompt-header">
@@ -49,8 +47,8 @@
         <div class="prompt-content">
           <form action="#" method="POST">
             <div class="input-block">
-              <label for="cid">SID</label>
-              <input type="text" id="cid" name="sid">
+              <label for="sid">SID</label>
+              <input type="text" id="sid" name="sid" placeholder="SID looks like: plsk2jXrXz">
             </div>
           </form>
         </div>
@@ -79,6 +77,6 @@
     <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script src="/js/_.js"></script>
-    <script src="/js/app.js"></script>
+    <!-- <script src="/js/app.js"></script> -->
   </body>
 </html>

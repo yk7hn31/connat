@@ -37,7 +37,12 @@ input::-ms-reveal, input::-ms-clear {
 }
 
 .scrollable {
+  scrollbar-width: none;
   overflow-y: scroll;
+}
+
+.scrollable::-webkit-scrollbar {
+  display: none;
 }
 
 .hidden {
@@ -75,6 +80,11 @@ html, body {
 h1, h2, h3, h4, h5, h6 {
   margin: 0;
   font-size: 24px;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
 }
 
 li {
@@ -122,17 +132,11 @@ li {
 .input-block > input[type='password'],
 .input-block > input[type='email'] {
   width: 350px;
-  font-size: 14.5px;
+  font-size: 15px;
   padding: 10px 12px;
-  border-radius: 7px;
+  border-radius: 5px;
   background-color: var(--bg-alt);
-  box-shadow: var(--border);
-}
-
-.input-block > input[type='text']:focus,
-.input-block > input[type='password']:focus,
-.input-block > input[type='email']:focus {
-  box-shadow: inset #00000039 0 0 0 1px;
+  border: 1.5px solid rgb(0, 0, 0, 0.1);
 }
 
 b {
@@ -190,6 +194,24 @@ input[type='button'].save:hover,
 input[type='submit'].standard:hover,
 input[type='button'].standard:hover {
   background-position: bottom;
+}
+
+.preview::after {
+  position: absolute;
+  padding: 12px;
+  font-weight: 500;
+  border-radius: 5px;
+  background-color: var(--bg);
+  box-shadow: 0 20px 50px rgb(0, 0, 0, .25);
+  filter: opacity(0);
+  z-index: -5;
+  transition: filter .12s .15s, z-index 0s .27s;
+}
+
+.preview:hover::after {
+  filter: opacity(1);
+  z-index: 5;
+  transition: filter .12s .15s, z-index 0s 0s;
 }
 
 div.msg {
@@ -311,8 +333,8 @@ div.msg.success {
   top: 20px;
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   .prompt-ex > .prompt-in {
     background-color: var(--bg-alt);
   }
-}
+} */

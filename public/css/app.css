@@ -1,48 +1,151 @@
 @import url('./colors.css');
 @import url('./init.css');
 
-header,
-main {
+body {
   display: flex;
   flex-direction: row;
-  padding: 15px 13% 15px 13%;
-  align-items: center;
 }
 
-header {
-  height: 8.5%;
-}
-
-main {
-  width: 100%;
-  height: 91.5%;
-}
-
-main > #side,
-main > #chat,
-main > #chat-ph {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  box-shadow: var(--border);
+#side, #content {
   height: 100%;
 }
 
-main > #side {
-  min-width: 280px;
-  width: 25%;
-  margin-right: -2px;
-  border-radius: 20px 0 0 20px;
+#side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 6%;
+  border-right: 1px solid var(--gry-temp);
+  padding: 20px;
 }
 
-main > #chat,
+#content {
+  width: 94%;
+}
+
+/* side */
+
+#side > li.server {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color .15s;
+}
+
+#side > li.server > ion-icon {
+  color: #9fabb9;
+  font-size: 24px;
+  transition: color .1s !important;
+}
+
+#side > li.server::after {
+  content: 'Server Name';
+  left: calc(6% - 10px);
+}
+
+#side > li.server:first-of-type::after {
+  content: 'Direct Messages';
+}
+
+#side > li.server:first-of-type::before {
+  position: absolute;
+  content: '';
+  background-color: var(--gry-temp);
+  width: 50px;
+  height: 1px;
+  transform: translateY(40px);
+}
+
+#side > li.server:not(:last-of-type) {
+  margin-bottom: 20px;
+}
+
+#side > li.server:hover, #side > li.server.active {
+  background-color: rgb(0, 0, 0, 0.05);
+}
+
+#side > li.server.active > ion-icon {
+  color: var(--accent);
+}
+
+/* content */
+
+#content > header, main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+#content > header {
+  padding: 30px;
+  height: 10%;
+  border-bottom: 1px solid var(--gry-temp);
+}
+
+#content > header > ion-icon {
+  margin-right: 15px;
+  color: #9fabb9;
+}
+
+#content > header > h1 {
+  font-size: 21px;
+  font-weight: 800;
+  margin-right: 20px;
+}
+
+#content > header > span {
+  font-weight: 300;
+  font-size: 18px;
+}
+
+#content > header > input[type='button'] {
+  margin-left: auto;
+  justify-self: flex-end;
+}
+
+#content > main {
+  width: 100%;
+  height: 90%;
+}
+
+main > #channel, main > #chat-ph {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+main > #channel {
+  width: 30%;
+  border-right: 1px solid var(--gry-temp);
+}
+
+main #channel > div {
+  padding: 25px;
+}
+
+main > #channel > #channel-header {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+}
+
+main > #channel > #channel-header > button {
+  margin-left: auto;
+}
+
+main > #channel > #channel-header > button::after {
+  content: 'Create DM';
+  transform: translateY(40px);
+}
+
 main > #chat-ph {
-  width: 75%;
+  width: 70%;
   background-color: var(--bg-alt);
-  border-radius: 0 20px 20px 0;
-}
-
-main > #chat-ph {
   align-items: center;
   justify-content: center;
   font-size: 15px;
@@ -54,320 +157,4 @@ main > #chat-ph {
 
 main > #chat-ph:hover {
   background-color: var(--bg-alt2);
-}
-
-/* Header */
-
-header > h1 {
-  font-weight: 800;
-  margin-right: 10px;
-}
-
-header > span {
-  font-weight: 300;
-  font-size: 16px;
-  font-family: JetBrains Mono, monospace;
-}
-
-header > input[type='button'] {
-  margin-left: auto;
-  justify-self: flex-end;
-}
-
-/* Connections */
-
-#side > #server-list {
-  padding: 10px;
-  scrollbar-width: none;
-}
-
-#side > #server-list::-webkit-scrollbar {
-  display: none;
-}
-
-#side > #server-list > .server,
-#side > #server-pref {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  width: 100%;
-  background-color: var(--bg);
-  border-radius: 13px;
-  padding: 10px;
-}
-
-#side > #server-list > .server {
-  position: relative;
-  height: 56px;
-  padding: 8px 12px 8px 22px;
-  margin-bottom: 5px;
-  min-width: 250px;
-  cursor: pointer;
-  transition: box-shadow 0.15s, background 0.15s;
-}
-
-#side > #server-list > .server:hover,
-#side > #server-list > .server.active {
-  box-shadow: var(--border-alt);
-  background-color: var(--bg-alt2-tr);
-}
-
-#side > #server-list > .server::before {
-  position: absolute;
-  content: '';
-  background-color: var(--gry);
-  width: 4px;
-  height: 4px;
-  border-radius: 2px;
-  left: 9.5px;
-  transition: height 0.125s, background-color 0.125s;
-}
-
-#side > #server-list > .server:hover::before {
-  height: 12px;
-}
-
-#side > #server-list > .server.active::before {
-  height: 17px;
-  background-color: #646566;
-}
-
-#side > #server-list > .server > .server-info {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  justify-content: center;
-}
-
-#side > #server-list > .server > .server-info > .server-id {
-  font-weight: 600;
-  font-size: 17.2px;
-  margin-bottom: 1px;
-}
-
-#side > #server-list > .server > .server-info > .server-preview {
-  color: var(--gry);
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: 200px;
-  font-size: 11.5px;
-}
-
-#side > #server-pref {
-  height: 50px;
-  margin-top: auto;
-  justify-self: flex-end;
-  box-shadow: var(--border);
-  border-radius: 0 0 0 20px;
-}
-
-/* Chat */
-
-#chat > #chat-header {
-  position: absolute;
-  top: 0;
-  left: 0;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 10px 20px 10px 20px;
-  width: 100%;
-  height: 42.5px;
-  background-color: var(--bg-chat-info);
-  backdrop-filter: blur(12px);
-  border-radius: 0 20px 0 0;
-  box-shadow: var(--border);
-  z-index: 1;
-}
-
-#chat > #chat-header > ion-icon[name='person'] {
-  font-size: 19px;
-}
-
-#chat > #chat-header > ion-icon[name='person'],
-#chat > #chat-header > ion-icon[name='people'] {
-  margin-right: 7px;
-}
-
-#chat > #chat-header > #chat-header-info {
-  font-size: 17px;
-  font-weight: 800;
-  padding: 5px 8px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.1s;
-}
-
-#chat > #chat-header > #chat-header-info:hover {
-  background-color: rgb(0, 0, 0, 0.07);
-}
-
-#chat > #chat-header > button.icon {
-  justify-self: end;
-  margin-left: auto;
-}
-
-#chat > #chat-header > button.icon > ion-icon {
-  color: var(--red);
-}
-
-#chat > #bubble-list {
-  padding: 55px 15px 60px 15px;
-  width: 100%;
-  height: 100%;
-  scrollbar-width: none;
-}
-
-#chat > #bubble-list::-webkit-scrollbar {
-  display: none;
-}
-
-#chat > #bubble-list > .bubble-ex {
-  display: flex;
-  flex-direction: column;
-  overflow: visible;
-  margin-bottom: 17.5px;
-}
-
-#chat > #bubble-list > .bubble-ex > .user {
-  color: var(--gry);
-  font-size: 13px;
-  font-weight: 500;
-  margin: 0 5px 5px 5px;
-}
-
-#chat > #bubble-list > .bubble-ex.self > .user {
-  display: none;
-}
-
-#chat > #bubble-list > .bubble-ex.server ~ #chat > #bubble-list > .bubble-ex.server > .user {
-  display: none;
-}
-
-#chat > #bubble-list > .bubble-ex > .bubble-in {
-  display: flex;
-  flex-direction: row;
-  overflow: visible;
-}
-
-#chat > #bubble-list > .bubble-ex > .bubble-in > .time {
-  margin: auto 8px 5px 8px;
-  color: var(--gry);
-  font-size: 12.5px;
-  filter: opacity(0);
-  transition: filter 0.15s;
-}
-
-#chat > #bubble-list > .bubble-ex:hover > .bubble-in > .time {
-  filter: opacity(1);
-}
-
-#chat > #bubble-list > .bubble-ex.self > .bubble-in {
-  flex-direction: row-reverse;
-}
-
-#chat > #bubble-list > .bubble-ex > .bubble-in > .msg {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  max-width: 440px;
-  min-height: 45px;
-  padding: 12.5px 17.5px 12.5px 17.5px;
-  border-radius: 22.5px;
-  user-select: text;
-  font-size: 15px;
-}
-
-#chat > #bubble-list > .bubble-ex.self > .bubble-in > .msg {
-  color: white;
-  background-color: var(--accent);
-  box-shadow: var(--bx-shadow-acc);
-  border-top-right-radius: 5px;
-}
-
-#chat > #bubble-list > .bubble-ex.server > .bubble-in > .msg {
-  background-color: var(--bg);
-  box-shadow: var(--border);
-  border-top-left-radius: 5px;
-}
-
-#chat > #chat-input-ex {
-  position: absolute;
-  width: 100%;
-  bottom: 0;
-  left: 0;
-  background-color: transparent;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 70px;
-  padding: 7.5px;
-  overflow: visible;
-}
-
-#chat > #chat-input-ex > #chat-input-in {
-  display: flex;
-  align-items: center;
-  background-color: var(--bg);
-  box-shadow: var(--border);
-  width: 75%;
-  height: 45px;
-  padding: 7.5px 15px;
-  border-radius: 9px;
-  transition: box-shadow 0.25s;
-}
-
-#chat > #chat-input-ex > #chat-input-in:focus-within {
-  box-shadow: var(--border), 0px 1.2px 2.2px rgba(0, 0, 0, 0.011),
-    0px 3px 5.3px rgba(0, 0, 0, 0.016), 0px 5.6px 10px rgba(0, 0, 0, 0.02),
-    0px 10.1px 17.9px rgba(0, 0, 0, 0.024),
-    0px 18.8px 33.4px rgba(0, 0, 0, 0.029), 0px 45px 80px rgba(0, 0, 0, 0.04);
-}
-
-#chat > #chat-input-ex > #chat-input-in > input {
-  width: 100%;
-  height: 100%;
-  font-size: 15px;
-  color: var(--text-alt);
-}
-
-#chat > #chat-input-ex > #chat-input-in > button.icon {
-  margin-right: 7.5px;
-}
-
-#chat > #chat-input-ex > #chat-input-in > button.icon > ion-icon {
-  color: var(--gry);
-  transition: color 0.15s;
-}
-
-#chat > #chat-input-ex > #chat-input-in > button.icon:hover > ion-icon {
-  color: var(--blk);
-}
-
-.prompt-ex > .prompt-in > .prompt-content > form {
-  display: flex;
-  justify-content: center;
-}
-
-.prompt-ex > .prompt-in > .prompt-content > form > .input-block > input {
-  font-family: JetBrains Mono, monospace;
-}
-
-@media (prefers-color-scheme: dark) {
-  #chat > #bubble-list > .bubble-ex.server > .bubble-in > .msg {
-    color: var(--text-alt);
-    background-color: #202022;
-  }
-
-  #chat > #chat-input-ex > #chat-input-in {
-    background-color: #18181a;
-  }
-
-  #chat > #chat-input-ex > #chat-input-in:focus-within {
-    box-shadow: inset #2c2c2e 0 0 0 1px;
-  }
-
-  #chat > #chat-input-ex > #chat-input-in > button.icon:hover > ion-icon {
-    color: var(--wht);
-  }
 }

@@ -18,6 +18,8 @@
   --blk: #000000;
   --pnk-ll: #e4007d;
 
+  --gry-temp: #0000001a;
+
   --accent: var(--blu); /* Accent color */
 
   --bg: #ffffff; /* Default background color */
@@ -44,7 +46,7 @@
   --bx-shadow-red: #ff3b3099 0 0 3px 0; /* Red box shadow */
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --red: #ff453a;
     --orn: #ff9f0a;
@@ -77,4 +79,4 @@
 
     --border-inp: #444446 0 1px;
   }
-}
+} */

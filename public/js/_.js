@@ -26,13 +26,18 @@ const _ = {
     const manageServer = this.manageServer;
 
     function promptInit() {
+      const clearInput = () => setTimeout(() => document.querySelector('.prompt-content > form input[type=text]').value = '', 600);
       document.querySelectorAll('.prompt-ex').forEach((prompt) => {
         prompt.querySelector('.prompt-control > input[type=button].standard').addEventListener('click', (event) => {
           event.target.parentElement.parentElement.parentElement.classList.remove('active');
+          clearInput();
         });
 
         prompt.addEventListener('click', (event) => {
-          if (event.target.classList.contains('prompt-ex')) prompt.classList.remove('active');
+          if (event.target.classList.contains('prompt-ex')) {
+            prompt.classList.remove('active');
+            clearInput();
+          }
         });
       });
 
@@ -54,7 +59,7 @@ const _ = {
           }
 
           prompt.classList.remove('active');
-          setTimeout(() => sidForm.querySelector('input[type=text]').value = '', 600);
+          clearInput();
         }
 
         sidForm.addEventListener('submit', handleJoin);
@@ -81,10 +86,10 @@ const _ = {
     server: ({ sid, name, users }) => {
       const userLength = users.length;
       return `
-      <li id="${sid}" class="server">
-        <div class="server-info">
-          <div class="server-id">${name}</div>
-          <div class="server-preview">${userLength} ${userLength > 1 ? 'users' : 'user'}</div>
+      <li id="${sid}" class="channel">
+        <div class="channel-info">
+          <div class="channel-name">${name}</div>
+          <div class="channel-preview">${userLength} ${userLength > 1 ? 'users' : 'user'}</div>
         </div>
       </li>`;
     }
