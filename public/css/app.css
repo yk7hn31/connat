@@ -32,9 +32,9 @@ body {
   justify-content: center;
   width: 60px;
   height: 60px;
-  border-radius: 10px;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color .15s;
+  transition: background-color .15s, border-radius .15s;
 }
 
 #side > li.server > ion-icon {
@@ -65,8 +65,13 @@ body {
   margin-bottom: 20px;
 }
 
-#side > li.server:hover, #side > li.server.active {
-  background-color: #0000000d;
+#side > li.server:hover {
+  background-color: #00000008;
+}
+
+#side > li.server.active {
+  border-radius: 10px;
+  background-color: #007aff0d;
 }
 
 #side > li.server.active > ion-icon {
@@ -115,19 +120,22 @@ body {
   height: 90%;
 }
 
-main > #channel, main > #chat-ph {
+main > #channel, main > #chat-ph, main > #chat, main > #participant-list {
   display: flex;
   flex-direction: column;
   height: 100%;
 }
 
-main > #channel {
-  width: 25%;
+main > #channel, main > #chat {
   border-right: var(--border);
 }
 
+main > #channel {
+  width: 22.5%;
+}
+
 main > #channel > * {
-  padding: 25px;
+  padding: 20px;
 }
 
 main > #channel > #channel-header {
@@ -151,7 +159,7 @@ main > #channel > #channel-list > .channel {
   height: 70px;
   padding: 15px;
   margin-bottom: 5px;
-  border-radius: 10px;
+  border-radius: 15px;
   overflow: visible;
   cursor: pointer;
   transition: background-color .15s;
@@ -183,6 +191,7 @@ main > #channel > #channel-list > .channel > .preview {
   display: flex;
   color: var(--gry);
   font-size: 13px;
+  text-overflow: ellipsis;
 }
 
 main > #channel > #channel-list > .channel > .preview > span {
@@ -192,7 +201,7 @@ main > #channel > #channel-list > .channel > .preview > span {
 }
 
 main > #chat-ph {
-  width: 75%;
+  width: 57.5%;
   background-color: var(--bg-alt);
   align-items: center;
   justify-content: center;
@@ -205,4 +214,107 @@ main > #chat-ph {
 
 main > #chat-ph:hover {
   background-color: var(--bg-alt2);
+}
+
+main > #chat {
+  width: 62.5%;
+  padding-bottom: 20px;
+}
+
+main > #chat > #bubble-list {
+  height: calc(100% - 60px);
+}
+
+main > #chat > #chat-input {
+  display: flex;
+  flex-direction: row;
+  padding: 15px 20px;
+  height: 60px;
+  background: var(--bg);
+  align-items: center;
+}
+
+main > #chat > #chat-input > button > ion-icon {
+  color: #9fabb9;
+  transition: color .15s;
+}
+
+main > #chat > #chat-input > button:first-of-type > ion-icon {
+  font-size: 26px;
+}
+
+main > #chat > #chat-input > button:first-of-type:hover > ion-icon {
+  color: var(--accent);
+}
+
+main > #chat > #chat-input > input[type='text'] {
+  flex-grow: 100;
+  padding: 12px 15px;
+  font-size: 15px;
+  background-color: var(--bg-alt);
+  border: 1.8px solid rgba(0, 0, 0, 0.08);
+  border-radius: 10px;
+  margin: 0 15px 0 20px;
+}
+
+main > #chat > #chat-input > input[type='text']:not(:placeholder-shown) + button[type='submit'] > ion-icon {
+  color: var(--accent);
+}
+
+main > #participant-list {
+  width: 20%;
+  padding: 20px;
+}
+
+main > #participant-list > b,
+main > #participant-list > span {
+  margin-bottom: 5px;
+}
+
+main > #participant-list > b {
+  font-size: 18px;
+}
+
+main > #participant-list > span {
+  color: var(--gry);
+  font-size: 13px;
+}
+
+main > #participant-list > li.participant {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 45px;
+  padding: 10px 10px 10px 15px;
+  border-radius: 10px;
+  margin-top: 5px;
+  transition: background-color .15s;
+}
+
+main > #participant-list > li.participant:hover {
+  background-color: #00000008;
+}
+
+main > #participant-list > li.participant > .username {
+  font-weight: 600;
+  font-size: 15.5px;
+}
+
+main > #participant-list > li.participant > button {
+  border-radius: 20px;
+  padding: 5px;
+  margin-left: auto;
+  transition: background-color .15s;
+}
+
+main > #participant-list > li.participant > button:hover {
+  background-color: #007aff0d;
+}
+
+main > #participant-list > li.participant > button > ion-icon {
+  color: #9fabb9;
+}
+
+main > #participant-list > li.participant > button:hover > ion-icon {
+  color: var(--accent);
 }

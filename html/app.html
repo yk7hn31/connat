@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Connat</title>
     <link rel="stylesheet" href="/css/app.css">
+    <link rel="shortcut icon" type="image/jpg" href="/favicon.svg">
   </head>
   <body>
     <ul id="side">
@@ -50,7 +51,35 @@
             </li>
           </ul>
         </div>
-        <div id="chat-ph">Join or create a server to start chatting!</div>
+        <div id="chat">
+          <div id="bubble-list"></div>
+          <form id="chat-input">
+            <button>
+              <ion-icon name="attach"></ion-icon>
+            </button>
+            <input type="text" name="message" placeholder="Write a message...">
+            <button type="submit">
+              <ion-icon name="send"></ion-icon>
+            </button>
+          </form>
+        </div>
+        <ul id="participant-list">
+          <b>Participants</b>
+          <span>2 users in total</span>
+          <li class="participant">
+            <div class="username">evannilaz</div>
+            <button>
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </li>
+          <li class="participant">
+            <div class="username">captain0potlid</div>
+            <button>
+              <ion-icon name="add"></ion-icon>
+            </button>
+          </li>
+        </ul>
+        <!-- <div id="chat-ph">Join or create a server to start chatting!</div> -->
       </main>
     </div>
     <div id="join-server" class="prompt-ex">
