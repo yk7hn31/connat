@@ -52,15 +52,18 @@ function initChannels() {
         }).then(async (res) => {
           const msgHistory = await res.json();
           let result = '';
-  
+          let prevUsername, prevTime;
+
           msgHistory.forEach((message) => {
-            result += _.format.message(message);
+            if (prevUsername === message.username && prevTime === message.time) result += _.format.message(message, false, true);
+            else result += _.format.message(message);
+            prevUsername = message.username;
+            prevTime = message.time;
           });
   
-          messageList.innerHTML = result;
-          
           mainContent.querySelectorAll('.hidden-hard').forEach((element) => element.classList.remove('hidden-hard'));
           document.getElementById('placeholder').classList.add('hidden-hard');
+          messageList.innerHTML = result;
 
           messageList.scrollTop = messageList.scrollHeight;
         });

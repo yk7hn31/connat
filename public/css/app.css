@@ -212,6 +212,10 @@ main > #chat > #message-list > .message {
   transition: background-color .15s;
 }
 
+main > #chat > #message-list > .message.info-hidden {
+  padding-top: 0;
+}
+
 main > #chat > #message-list > .message:hover {
   background-color: var(--gry-tnp);
 }
@@ -224,6 +228,10 @@ main > #chat > #message-list > .message > .info {
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
+}
+
+main > #chat > #message-list > .message.info-hidden > .info {
+  display: none;
 }
 
 main > #chat > #message-list > .message > .info > .username {

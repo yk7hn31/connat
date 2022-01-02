@@ -72,9 +72,9 @@ export const _ = {
     prompt.classList.add('active');
   },
   format: {
-    message: ({ username, content, time }, realtime = false) => {
+    message: ({ username, content, time }, realtime = false, hideInfo = false) => {
       return `
-      <li class="message ${realtime ? 'realtime' : ''}">
+      <li class="message${realtime ? ' realtime' : ''}${hideInfo ? ' info-hidden' : ''}">
         <div class="info">
           <div class="username">${username}</div>
           <span class="time">${time}</span>
