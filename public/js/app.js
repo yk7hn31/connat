@@ -1,3 +1,5 @@
+import { _ } from '/js/_.js';
+
 const socket = io();
 
 const serverList = document.getElementById('side');
@@ -8,38 +10,39 @@ const chatForm = document.getElementById('chat-input');
 
 const username = document.body.getAttribute('user');
 
-fetch('/chat/server/list', { method: 'POST' }).then(async (res) => {
-  const serverInfoList = await res.json();
-
-  serverInfoList.forEach((info) => {
-    serverList.insertAdjacentHTML('beforeend', _.format.server(info));
+async function getServerList() {
+  return fetch('/chat/server/list', { method: 'POST' }).then(async (res) => {
+    let serverElements = '';
+    (await res.json()).forEach((info) => serverElements += _.format.server(info));
+    serverList.insertAdjacentHTML('beforeend', serverElements);
   });
-});
+}
 
-fetch('/chat/dm/list', { method: 'POST' }).then(async (res) => {
-  const dmInfoList = await res.json();
-
-  dmInfoList.forEach((info) => {
-    channelList.insertAdjacentHTML('beforeend', _.format.channel(info));
+async function getDMList() {
+  return fetch('/chat/dm/list', { method: 'POST' }).then(async (res) => {
+    let channelElements = '';
+    (await res.json()).forEach((info) => channelElements += _.format.channel(info));
+    channelList.innerHTML =  channelElements;
   });
-}).then(() => {
+}
+
+function initChannels() {
   channelList.querySelectorAll('.channel').forEach((channel) => {
     channel.addEventListener('click', (event) => {
       const activeChannel = channelList.querySelector('.active');
       let id;
       
-      if (event.target.tagName === 'SPAN') id = event.target.parentElement.parentElement.id;
-      else if (event.target.classList.contains('name') || event.target.classList.contains('preview')) id = event.target.parentElement.id;
+      if (event.target.classList.contains('name') || event.target.tagName === 'ION-ICON') id = event.target.parentElement.id;
       else id = event.target.id;
-
+  
       if (activeChannel && activeChannel.id === id) return;
-
+  
       if (activeChannel) activeChannel.classList.remove('active');
       document.getElementById(id).classList.add('active');
-
+  
       if (serverList.querySelector('.active').id === 'direct-message') {
         socket.emit('joinDM', { username, room: id });
-
+  
         fetch('/chat/dm/history', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -47,23 +50,27 @@ fetch('/chat/dm/list', { method: 'POST' }).then(async (res) => {
         }).then(async (res) => {
           const msgHistory = await res.json();
           let result = '';
-
+  
           msgHistory.forEach((message) => {
             result += _.format.message(message);
           });
-
+  
           messageList.innerHTML = result;
+          
+          mainContent.querySelectorAll('.hidden-hard').forEach((element) => element.classList.remove('hidden-hard'));
+          document.getElementById('placeholder').classList.add('hidden-hard');
+
           messageList.scrollTop = messageList.scrollHeight;
         });
       }
-
-      mainContent.querySelectorAll('.hidden-hard').forEach((element) => element.classList.remove('hidden-hard'));
-      document.getElementById('placeholder').classList.add('hidden-hard');
     });
   });
-});
+}
 
-chatForm.addEventListener('submit', (event) => { // NOTE: Written on assumption of DM
+getServerList();
+getDMList().then(initChannels);
+
+chatForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const content = new FormData(chatForm).get('message');
 
@@ -72,10 +79,6 @@ chatForm.addEventListener('submit', (event) => { // NOTE: Written on assumption 
 
 socket.on('serverMessage', (data) => {
   chatForm.querySelector('input[type=text]').value = '';
-  messageList.insertAdjacentHTML('beforeend', _.format.message(data));
-  messageList.scrollTop = messageList.scrollHeight;
+  messageList.insertAdjacentHTML('beforeend', _.format.message(data, true));
+  messageList.scroll({ top: messageList.scrollHeight, behavior: 'smooth' });
 });
-
-// chatPh.addEventListener('click', (event) => {
-//   _.prompt('join-server');
-// });

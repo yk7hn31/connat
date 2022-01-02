@@ -39,18 +39,10 @@ router.post('/dm/list', (req, res) => {
     if (dmList.length > 0) {
       for (let id of dmList) {
         const dm = ((await (await sql.promise).execute('select users from dm where id = ? limit 1', [id]))[0])[0];
-        const preview = ((await (await sql.promise).execute('select username, message, time from dm_history where id = (select max(id) from dm_history where dm = ?) limit 1', [id]))[0])[0];
         const userList = JSON.parse(dm.users);
         userList.splice(userList.indexOf(req.session.username), 1);
 
-        response.push({
-          id, username: userList.toString(),
-          preview: preview ? {
-            username: preview.username,
-            message: preview.message,
-            time: moment(preview.time).fromNow(true)
-          } : null
-        });
+        response.push({ id, username: userList.toString() });
       }
     }
 

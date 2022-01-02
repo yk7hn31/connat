@@ -24,6 +24,7 @@
 
 ion-icon {
   overflow: visible;
+  color: var(--gry);
   font-size: 22px;
 }
 
@@ -184,6 +185,14 @@ input[type='button'].save:hover,
 input[type='submit'].standard:hover,
 input[type='button'].standard:hover {
   filter: brightness(.95);
+}
+
+button.icon > ion-icon {
+  transition: color .15s;
+}
+
+button.icon:hover > ion-icon {
+  color: var(--accent);
 }
 
 .preview::after {

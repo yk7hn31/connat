@@ -39,7 +39,6 @@ body {
 }
 
 #side > li.server > ion-icon {
-  color: var(--gry);
   font-size: 24px;
   transition: color .1s !important;
 }
@@ -130,8 +129,8 @@ main > #channel, main > #chat {
 }
 
 main > #channel {
-  width: 22.5%;
-  min-width: 22.5%;
+  width: 18.5%;
+  min-width: 18.5%;
 }
 
 main > #channel > * {
@@ -149,10 +148,6 @@ main > #channel > #channel-header > button {
   margin-left: auto;
 }
 
-main > #channel > #channel-header > button > ion-icon {
-  color: var(--gry);
-}
-
 main > #channel > #channel-header > button::after {
   content: 'Create DM';
   transform: translateY(40px);
@@ -161,11 +156,11 @@ main > #channel > #channel-header > button::after {
 main > #channel > #channel-list > .channel {
   position: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 70px;
-  padding: 15px;
-  margin-bottom: 5px;
+  flex-direction: row;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
+  margin-bottom: 3px;
   border-radius: 15px;
   overflow: visible;
   cursor: pointer;
@@ -188,29 +183,19 @@ main > #channel > #channel-list > .channel:hover {
   left: -5px;
 } */
 
+main > #channel > #channel-list > .channel > button {
+  margin-left: auto;
+  filter: opacity(0);
+  transition: filter .15s;
+}
+
+main > #channel > #channel-list > .channel:hover > button {
+  filter: opacity(1);
+}
+
 main > #channel > #channel-list > .channel > .name {
   font-weight: 600;
   font-size: 17px;
-  margin-bottom: 5px;
-}
-
-main > #channel > #channel-list > .channel > .preview {
-  display: flex;
-}
-
-main > #channel > #channel-list > .channel > .preview > span {
-  color: var(--gry);
-  font-size: 13px;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-main > #channel > #channel-list > .channel > .preview > span:first-of-type {
-  width: 80%;
-}
-
-main > #channel > #channel-list > .channel > .preview > span:last-of-type {
-  margin-left: auto;
 }
 
 main > #placeholder {
@@ -240,6 +225,10 @@ main > #chat > #message-list > .message {
 
 main > #chat > #message-list > .message:hover {
   background-color: var(--gry-tnp);
+}
+
+main > #chat > #message-list > .message.realtime {
+  animation: message-animation .2s;
 }
 
 main > #chat > #message-list > .message > .info {
@@ -276,7 +265,6 @@ main > #chat > #chat-input {
 }
 
 main > #chat > #chat-input > button > ion-icon {
-  color: var(--gry);
   transition: color .15s;
 }
 
@@ -342,20 +330,15 @@ main > #participant-list > li.participant > .username {
 }
 
 main > #participant-list > li.participant > button {
-  border-radius: 20px;
-  padding: 5px;
   margin-left: auto;
-  transition: background-color .15s;
 }
 
-main > #participant-list > li.participant > button:hover {
-  background-color: #007aff0d;
-}
+@keyframes message-animation {
+  from {
+    filter: opacity(0);
+  }
 
-main > #participant-list > li.participant > button > ion-icon {
-  color: var(--gry);
-}
-
-main > #participant-list > li.participant > button:hover > ion-icon {
-  color: var(--accent);
+  to {
+    filter: opacity(1);
+  }
 }

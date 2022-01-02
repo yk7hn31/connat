@@ -24,7 +24,7 @@
         <div id="channel">
           <div id="channel-header">
             <b>Chats</b>
-            <button class="preview">
+            <button class="preview icon">
               <ion-icon name="add-outline"></ion-icon>
             </button>
           </div>
@@ -33,7 +33,7 @@
         <div id="chat" class="hidden-hard">
           <ul id="message-list" class="scrollable"></ul>
           <form id="chat-input">
-            <button>
+            <button class="icon">
               <ion-icon name="attach"></ion-icon>
             </button>
             <input type="text" name="message" placeholder="Write a message...">
@@ -47,13 +47,13 @@
           <span>This is dummy data</span>
           <li class="participant">
             <div class="username">evannilaz</div>
-            <button>
+            <button class="icon">
               <ion-icon name="add"></ion-icon>
             </button>
           </li>
           <li class="participant">
             <div class="username">captain0potlid</div>
-            <button>
+            <button class="icon">
               <ion-icon name="add"></ion-icon>
             </button>
           </li>
@@ -99,7 +99,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule="" src="https://unpkg.com/ionicons@5.0.0/dist/ionicons/ionicons.js"></script>
     <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/_.js"></script>
-    <script src="/js/app.js"></script>
+    <script src="/js/_.js" type="module"></script>
+    <script src="/js/app.js" type="module"></script>
   </body>
 </html>

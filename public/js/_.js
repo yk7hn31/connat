@@ -1,6 +1,4 @@
-let promptInitialized = false;
-
-const _ = {
+export const _ = {
   manageServer: (sid, option) => (
     fetch(`/chat/${option}`, {
       method: 'POST',
@@ -21,6 +19,7 @@ const _ = {
     }, delay);
   },
   prompt: function (type) {
+    const promptInitialized = document.body.getAttribute('init');
     const prompt = document.querySelector(`#${type}.prompt-ex`);
     const alert = this.alert;
     const manageServer = this.manageServer;
@@ -66,16 +65,16 @@ const _ = {
         joinButton.addEventListener('click', handleJoin);
       }
 
-      promptInitialized = true;
+      document.body.setAttribute('init', 'true');
     }
 
     if (!promptInitialized) promptInit();
     prompt.classList.add('active');
   },
   format: {
-    message: ({ username, content, time }) => {
+    message: ({ username, content, time }, realtime = false) => {
       return `
-      <li class="message">
+      <li class="message ${realtime ? 'realtime' : ''}">
         <div class="info">
           <div class="username">${username}</div>
           <span class="time">${time}</span>
@@ -89,17 +88,13 @@ const _ = {
         <ion-icon name="${icon}"></ion-icon>
       </li>`;
     },
-    channel: ({ id, username, preview }) => {
+    channel: ({ id, username }) => {
       return `
       <li id="${id}" class="channel">
         <div class="name">${username}</div>
-        ${
-          preview ?
-          `<div class="preview">
-            <span>${preview.username}: ${preview.message}</span>
-            <span>${preview.time}</span>
-          </div>` : ''
-        }
+        <button class="icon">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
       </li>`;
     }
   }

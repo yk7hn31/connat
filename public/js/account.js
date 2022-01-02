@@ -1,5 +1,6 @@
+import { _ } from '/js/_.js';
+
 const form = document.querySelector('form');
-const msg = document.querySelector('.msg');
 
 const isSignIn = location.href.includes('signin');
 const unRegex = /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){4,18}[a-zA-Z0-9]$/;
