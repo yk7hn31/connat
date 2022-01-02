@@ -1,4 +1,5 @@
 const express = require('express');
+const moment = require('moment');
 
 const sql = require('../lib/mysql');
 const _ = require('../lib/_');
@@ -38,14 +39,37 @@ router.post('/dm/list', (req, res) => {
     if (dmList.length > 0) {
       for (let id of dmList) {
         const dm = ((await (await sql.promise).execute('select users from dm where id = ? limit 1', [id]))[0])[0];
+        const preview = ((await (await sql.promise).execute('select username, message, time from dm_history where id = (select max(id) from dm_history where dm = ?) limit 1', [id]))[0])[0];
         const userList = JSON.parse(dm.users);
         userList.splice(userList.indexOf(req.session.username), 1);
 
         response.push({
-          id, username: userList.toString()
+          id, username: userList.toString(),
+          preview: preview ? {
+            username: preview.username,
+            message: preview.message,
+            time: moment(preview.time).fromNow(true)
+          } : null
         });
       }
     }
+
+    res.send(response);
+  });
+});
+
+router.post('/dm/history', (req, res) => {
+  let response = [];
+  sql.async.query('select username, message, time from dm_history where dm = ? limit 20', [req.body.id], (err, data) => {
+    if (err) throw err;
+
+    data.forEach((message) => {
+      response.push({
+        username: message.username,
+        content: message.message,
+        time: _.getDate(message.time)
+      });
+    });
 
     res.send(response);
   });

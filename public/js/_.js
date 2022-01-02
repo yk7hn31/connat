@@ -89,14 +89,17 @@ const _ = {
         <ion-icon name="${icon}"></ion-icon>
       </li>`;
     },
-    channel: ({ id, username }) => {
+    channel: ({ id, username, preview }) => {
       return `
       <li id="${id}" class="channel">
         <div class="name">${username}</div>
-        <div class="preview">
-          You: Welcome to Connat!
-          <span>3h</span>
-        </div>
+        ${
+          preview ?
+          `<div class="preview">
+            <span>${preview.username}: ${preview.message}</span>
+            <span>${preview.time}</span>
+          </div>` : ''
+        }
       </li>`;
     }
   }

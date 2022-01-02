@@ -3,6 +3,10 @@ const moment = require('moment');
 
 const sql = require('./mysql');
 
+moment.updateLocale('en', {
+  relativeTime: { future: 'in %s', past: '%s ago', s: '1s', ss: '%ss', m: '1m', mm: '%dm', h: '1h', hh: '%dh', d: '1d', dd: '%dd', M: '1M', MM: '%dM', y: '1Y', yy: '%dY' }
+});
+
 module.exports = {
   html: {
     replace: (string, replace) => {
@@ -20,7 +24,7 @@ module.exports = {
   },
   getServerList: (un, callback) => sql.async.query('select servers from users where username = ? limit 1', [un], callback),
   getDMList: (un, callback) => sql.async.query('select dm from users where username = ? limit 1', [un], callback),
-  getDate: () => moment().format('MMM DD, hh:mm A'),
+  getDate: (date = undefined) => moment(date).format('MMM DD, hh:mm A'),
   send: function (file, option) {
     let base = fs.readFileSync(`./html/${file}.html`, "utf-8");
     let result = base;

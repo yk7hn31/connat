@@ -15,6 +15,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 95px;
   min-width: 95px;
   border-right: var(--border-layout);
   padding: 20px;
@@ -118,7 +119,7 @@ body {
   height: 90%;
 }
 
-main > #channel, main > #chat-ph, main > #chat, main > #participant-list {
+main > * {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -130,6 +131,7 @@ main > #channel, main > #chat {
 
 main > #channel {
   width: 22.5%;
+  min-width: 22.5%;
 }
 
 main > #channel > * {
@@ -158,6 +160,9 @@ main > #channel > #channel-header > button::after {
 
 main > #channel > #channel-list > .channel {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   height: 70px;
   padding: 15px;
   margin-bottom: 5px;
@@ -191,40 +196,41 @@ main > #channel > #channel-list > .channel > .name {
 
 main > #channel > #channel-list > .channel > .preview {
   display: flex;
-  color: var(--gry);
-  font-size: 13px;
-  white-space: nowrap;
 }
 
 main > #channel > #channel-list > .channel > .preview > span {
-  color: inherit;
-  font-size: inherit;
+  color: var(--gry);
+  font-size: 13px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+main > #channel > #channel-list > .channel > .preview > span:first-of-type {
+  width: 80%;
+}
+
+main > #channel > #channel-list > .channel > .preview > span:last-of-type {
   margin-left: auto;
 }
 
-main > #chat-ph {
-  width: 57.5%;
+main > #placeholder {
+  flex-grow: 100;
   background-color: var(--bg-alt);
   align-items: center;
   justify-content: center;
   font-size: 15px;
   font-weight: 500;
   color: var(--gry);
-  cursor: pointer;
-  transition: background 0.15s;
-}
-
-main > #chat-ph:hover {
-  background-color: var(--bg-alt2);
 }
 
 main > #chat {
   width: 62.5%;
-  padding: 10px 0 20px 0;
+  padding-bottom: 20px;
 }
 
 main > #chat > #message-list {
   height: calc(100% - 60px);
+  padding-top: 10px;
 }
 
 main > #chat > #message-list > .message {

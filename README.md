@@ -14,7 +14,7 @@ This application will have features below:
 
 ### Features
 
-- [ ] Live Chatting using socket.io
+- [x] Live Chatting using socket.io
 - [ ] Anonymous Chatting
 - [ ] Account/Friend Management
 - [ ] Group Chatting
