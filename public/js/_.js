@@ -6,7 +6,7 @@ export const _ = {
       body: JSON.stringify({ sid })
     }).then((res) => res.json())
   ),
-  alert: (msg, isError = false, delay = 600) => {
+  alert: (msg, isError = false, delay = 0) => {
     setTimeout(() => {
       const alert = document.querySelector('#alert');
 

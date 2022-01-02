@@ -51,4 +51,11 @@ router.post('/signup', (req, res) => {
   });
 });
 
+router.delete('/signout', (req, res) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+    res.send();
+  });
+});
+
 module.exports = router;

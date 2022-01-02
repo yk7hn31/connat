@@ -7,6 +7,7 @@ const mainContent = document.querySelector('#content > main');
 const channelList = document.getElementById('channel-list');
 const messageList = document.getElementById('message-list');
 const chatForm = document.getElementById('chat-input');
+const signOut = document.querySelector('#content > header > input[type=button]');
 
 const username = document.body.getAttribute('user');
 
@@ -70,6 +71,13 @@ function initChannels() {
 
 getServerList();
 getDMList().then(initChannels);
+
+signOut.addEventListener('click', () => {
+  fetch('/account/signout', { method: 'DELETE' }).then(() => {
+    _.alert('Successfully signed out. Redirecting you in 5 seconds...', false);
+    setTimeout(() => location.href = '/account/signin', 4500);
+  });
+});
 
 chatForm.addEventListener('submit', (event) => {
   event.preventDefault();
