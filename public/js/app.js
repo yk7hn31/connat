@@ -32,8 +32,9 @@ function initChannels() {
       const activeChannel = channelList.querySelector('.active');
       let id;
       
-      if (event.target.classList.contains('name') || event.target.tagName === 'ION-ICON') id = event.target.parentElement.id;
-      else id = event.target.id;
+      if (event.target.classList.contains('name')) id = event.target.parentElement.id;
+      else if (event.target.classList.contains('channel')) id = event.target.id;
+      else return;
   
       if (activeChannel && activeChannel.id === id) return;
   
@@ -73,8 +74,7 @@ getDMList().then(initChannels);
 chatForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const content = new FormData(chatForm).get('message');
-
-  if (content) socket.emit('clientMessage', { content, username });
+  if (content.trim()) socket.emit('clientMessage', { content, username });
 });
 
 socket.on('serverMessage', (data) => {

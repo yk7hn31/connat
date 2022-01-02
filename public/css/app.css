@@ -172,17 +172,6 @@ main > #channel > #channel-list > .channel:hover {
   background-color: var(--gry-tnp);
 }
 
-/* main > #channel > #channel-list > .channel.unread::before {
-  position: absolute;
-  content: '';
-  width: 10px;
-  height: 10px;
-  border-radius: 5px;
-  background-color: var(--red);
-  top: 25px;
-  left: -5px;
-} */
-
 main > #channel > #channel-list > .channel > button {
   margin-left: auto;
   filter: opacity(0);
@@ -264,16 +253,8 @@ main > #chat > #chat-input {
   align-items: center;
 }
 
-main > #chat > #chat-input > button > ion-icon {
-  transition: color .15s;
-}
-
 main > #chat > #chat-input > button:first-of-type > ion-icon {
   font-size: 26px;
-}
-
-main > #chat > #chat-input > button:first-of-type:hover > ion-icon {
-  color: var(--accent);
 }
 
 main > #chat > #chat-input > input[type='text'] {
@@ -283,7 +264,7 @@ main > #chat > #chat-input > input[type='text'] {
   background-color: var(--bg-alt);
   border: 1.8px solid var(--gry-tnp-alt);
   border-radius: 10px;
-  margin: 0 15px 0 20px;
+  margin: 0 15px 0 15px;
 }
 
 main > #chat > #chat-input > input[type='text']:not(:placeholder-shown) + button[type='submit'] > ion-icon {
